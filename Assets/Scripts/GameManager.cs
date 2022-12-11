@@ -7,10 +7,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public TextMeshProUGUI timer;
-    private float time;
+    private float matchTime;
     private float minutes;
     private float seconds;
+
+    public GameObject myBall;
+    public float ballTimer;
 
     private void Awake()
     {
@@ -26,7 +30,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        time = 120;
+        matchTime = 120;
+        StartCoroutine("spawnNewBall");
     }
 
     private void Update()
@@ -36,9 +41,14 @@ public class GameManager : MonoBehaviour
 
     void updateTimer() 
     {
-        minutes = Mathf.FloorToInt(time / 60);
-        seconds = Mathf.FloorToInt(time % 60);
+        minutes = Mathf.FloorToInt(matchTime / 60);
+        seconds = Mathf.FloorToInt(matchTime % 60);
         timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
-        time -= Time.deltaTime;
+        matchTime -= Time.deltaTime;
+    }
+    public IEnumerator spawnNewBall()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Instantiate(myBall, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

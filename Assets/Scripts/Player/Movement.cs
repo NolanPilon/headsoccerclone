@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Movement : MonoBehaviour
 {
@@ -11,28 +12,34 @@ public class Movement : MonoBehaviour
     public float jumpForce = 20f;
     public bool onGround = false;
 
-    private void Start() => rB = GetComponent<Rigidbody2D>();
+    PhotonView view;
+
+    private void Start()
+    {
+        rB = GetComponent<Rigidbody2D>();
+        view = GetComponent<PhotonView>();
+    } 
 
     private void Update()
     {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-
-        verticalMovement = Input.GetAxisRaw("Vertical");
-
-        if (onGround && Input.GetKeyDown(KeyCode.W))
+        if(view.IsMine)
         {
-            rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+            verticalMovement = Input.GetAxisRaw("Vertical");
+
+            if (onGround && Input.GetKeyDown(KeyCode.W))
+            {
+                rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+
+            if (verticalMovement < 0)
+            {
+                rB.velocity = new Vector2(rB.velocity.x, rB.velocity.y + verticalMovement);
+            }
+
+            rB.velocity = new Vector2(horizontalMovement * movementSpeed, rB.velocity.y);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if(verticalMovement < 0)
-        {
-            rB.velocity = new Vector2(rB.velocity.x, rB.velocity.y + verticalMovement);
-        }    
-
-        rB.velocity = new Vector2(horizontalMovement * movementSpeed, rB.velocity.y);
     }
 
 

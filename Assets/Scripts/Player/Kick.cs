@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Kick : MonoBehaviour
 {
@@ -12,9 +13,17 @@ public class Kick : MonoBehaviour
     private bool canKick = true;
     private float kickTime = 0.8f;
     private int kickForce = 16;
+    PhotonView view;
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
     private void Update()
     {
-        KickBall();
+        if(view.IsMine)
+        {
+            KickBall();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

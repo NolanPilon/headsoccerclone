@@ -8,9 +8,9 @@ public class InsideNet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            GameManager.Instance.UpdateScore();
             Destroy(collision.gameObject);
-
-            GameManager.Instance.StartCoroutine("spawnNewBall");
+            GameManager.Instance.StartCoroutine("SpawnNewBall");
         }
     }
 }

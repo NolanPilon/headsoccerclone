@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [Header("Movement")]
-    public float movementSpeed = 12f;
+    public float movementSpeed = 5.0f;
     private float horizontalMovement;
     private float verticalMovement;
     private Rigidbody2D rB;
-
-
-    [Header("Jumping")]
     public float jumpForce = 20f;
     public bool onGround = false;
 
@@ -23,7 +19,7 @@ public class Movement : MonoBehaviour
 
         verticalMovement = Input.GetAxisRaw("Vertical");
 
-        if (onGround && Input.GetKeyDown(KeyCode.Space))
+        if (onGround && Input.GetKeyDown(KeyCode.W))
         {
             rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }

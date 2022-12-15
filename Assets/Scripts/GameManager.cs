@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        print(PhotonNetwork.CurrentRoom.PlayerCount);
-
         if (ballInPlay == false && PhotonNetwork.CurrentRoom.PlayerCount == 2) 
         {
             StartCoroutine("SpawnNewBall");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class InsideNet : MonoBehaviour
 {       
@@ -8,8 +9,8 @@ public class InsideNet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            PhotonNetwork.Destroy(collision.gameObject);
             GameManager.Instance.UpdateScore();
-            Destroy(collision.gameObject);
             GameManager.Instance.StartCoroutine("SpawnNewBall");
         }
     }

@@ -895,7 +895,8 @@ MonoBehaviour:
   - {fileID: 837009442}
   - {fileID: 478759864}
   score: 0000000000000000
-  myBall: {fileID: 4688699238125629369, guid: 71e1583403bc8af44adcd95519000a28, type: 3}
+  ballInPlay: 0
+  gameBall: {fileID: 4688699238125629369, guid: 71e1583403bc8af44adcd95519000a28, type: 3}
   ballTimer: 0
 --- !u!4 &1303295014
 Transform:

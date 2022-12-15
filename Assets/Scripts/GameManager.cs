@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +17,8 @@ public class GameManager : MonoBehaviour
     private float matchTime;
     private float minutes;
     private float seconds;
+    public bool ballInPlay;
 
-    public GameObject myBall;
     private GameObject gameBall;
     public float ballTimer;
 
@@ -37,12 +39,19 @@ public class GameManager : MonoBehaviour
         score[0] = 0;
         score[1] = 0;
         matchTime = 120;
-        StartCoroutine("SpawnNewBall");
     }
 
     private void Update()
     {
-        UpdateTimer();
+        print(PhotonNetwork.CurrentRoom.PlayerCount);
+
+        if (ballInPlay == false && PhotonNetwork.CurrentRoom.PlayerCount == 2) 
+        {
+            StartCoroutine("SpawnNewBall");
+            ballInPlay = true;
+        }
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            UpdateTimer();
     }
 
     void UpdateTimer() 
@@ -70,7 +79,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator SpawnNewBall()
     {
         yield return new WaitForSeconds(2.0f);
-        Instantiate(myBall, new Vector3(0, 0, 0), Quaternion.identity);
+        PhotonNetwork.InstantiateRoomObject("Ball", new Vector3(0, 1, 0), Quaternion.identity);
         gameBall = GameObject.FindGameObjectWithTag("Ball");
     }
 }

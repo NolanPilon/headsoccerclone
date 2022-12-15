@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8503232566276066996}
   - component: {fileID: 725251784877368797}
   - component: {fileID: 6970647462724349862}
-  - component: {fileID: 4762852091529884791}
+  - component: {fileID: 2549624320473830968}
   m_Layer: 0
   m_Name: KickBox
   m_TagString: Kick
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRange: 0
---- !u!114 &4762852091529884791
+--- !u!114 &2549624320473830968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,10 +109,10 @@ GameObject:
   - component: {fileID: 2006994842841593344}
   - component: {fileID: 2006994842841593347}
   - component: {fileID: 16466946}
-  - component: {fileID: 2273900667965958530}
+  - component: {fileID: -281402107775877343}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,11 +234,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 2273900667965958530}
+  - {fileID: -281402107775877343}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2273900667965958530
+--- !u!114 &-281402107775877343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,30 +247,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2006994842841593349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 0
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 3
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 1
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-  m_RotationModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2006994843336383284
 GameObject:
   m_ObjectHideFlags: 0

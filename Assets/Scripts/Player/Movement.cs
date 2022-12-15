@@ -25,25 +25,9 @@ public class Movement : MonoBehaviour
     {
         if(view.IsMine)
         {
-            horizontalMovement = Input.GetAxisRaw("Horizontal");
-
-            verticalMovement = Input.GetAxisRaw("Vertical");
-
-            if (onGround && Input.GetKeyDown(KeyCode.W))
-            {
-                rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            }
-
-            if (verticalMovement < 0)
-            {
-                rB.velocity = new Vector2(rB.velocity.x, rB.velocity.y + verticalMovement);
-            }
-
-            rB.velocity = new Vector2(horizontalMovement * movementSpeed, rB.velocity.y);
+            movement();
         }
     }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -57,5 +41,17 @@ public class Movement : MonoBehaviour
         {
             onGround = false;
         }
+    }
+
+    private void movement() 
+    {
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        if (onGround && Input.GetKeyDown(KeyCode.W))
+        {
+            rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        transform.Translate(new Vector2(horizontalMovement * movementSpeed * Time.deltaTime, 0));
     }
 }

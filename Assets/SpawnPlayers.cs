@@ -5,10 +5,18 @@ using Photon.Pun;
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject playerPrefab;
-    public Vector2 newVec = new Vector2(-7.0f,-2.5f);
+    private Vector2 p1Spawn = new Vector2(-7.0f,-2.5f);
+    private Vector2 p2Spawn = new Vector2(7.0f, -2.5f);
 
     private void Start()
     {
-        PhotonNetwork.Instantiate(playerPrefab.name, newVec, Quaternion.identity);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1) 
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, p1Spawn, Quaternion.identity);
+        }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, p2Spawn, transform.rotation * Quaternion.Euler(0, 180, 0));
+        }
     }
 }

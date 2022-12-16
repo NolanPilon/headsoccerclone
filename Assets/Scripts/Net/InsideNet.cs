@@ -9,9 +9,9 @@ public class InsideNet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            PhotonNetwork.Destroy(collision.gameObject);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.StartCoroutine("SpawnNewBall");
+            PhotonNetwork.Destroy(collision.gameObject);
         }
     }
 }

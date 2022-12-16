@@ -8,6 +8,7 @@ TagManager:
   - InsideNet
   - Ball
   - Kick
+  - Net
   layers:
   - Default
   - TransparentFX

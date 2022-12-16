@@ -10,10 +10,12 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public PhotonView GameManagerView;
 
     public TextMeshProUGUI timer;
     public TextMeshProUGUI[] scoreText;
     public  int[] score;
+    public  int[] serverScore;
     private float matchTime;
     private float minutes;
     private float seconds;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        GameManagerView = GetComponent<PhotonView>();
         score[0] = 0;
         score[1] = 0;
         matchTime = 120;
@@ -43,13 +46,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //Once 2 players join the timer starts and ball spawns
         if (ballInPlay == false && PhotonNetwork.CurrentRoom.PlayerCount == 2) 
         {
             StartCoroutine("SpawnNewBall");
             ballInPlay = true;
         }
+
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
             UpdateTimer();
+
+
+        //End Game
+        if (matchTime <= 0) 
+        {
+            PhotonNetwork.LoadLevel("Loading");
+        }
+
     }
 
     void UpdateTimer() 
@@ -59,18 +72,15 @@ public class GameManager : MonoBehaviour
         timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         matchTime -= Time.deltaTime;
     }
-
-    public void UpdateScore() 
+    public void UpdateScore()
     {
         if (gameBall.transform.position.x > 0)
         {
-            score[0]+=1;
-            scoreText[0].text = score[0].ToString();
+            score[0] += 1;
         }
         else if (gameBall.transform.position.x < 0)
         {
-            score[1]+=1;
-            scoreText[1].text = score[1].ToString();
+            score[1] += 1;
         }
     }
 

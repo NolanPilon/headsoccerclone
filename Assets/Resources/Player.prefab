@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8503232566276066996}
   - component: {fileID: 725251784877368797}
-  - component: {fileID: 6970647462724349862}
   - component: {fileID: 2549624320473830968}
   m_Layer: 0
   m_Name: KickBox
@@ -60,19 +59,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.88848585, y: 0.8258201}
   m_EdgeRadius: 0
---- !u!114 &6970647462724349862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901647084417920586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de06dc25825d70b42956ed7cd919dd39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inRange: 0
 --- !u!114 &2549624320473830968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +222,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 378439499578137160}
+  - {fileID: 2087042512641273850}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

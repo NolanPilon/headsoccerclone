@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Unity.VisualScripting;
 
 public class Movement : MonoBehaviour
 {
     public float movementSpeed = 5.0f;
     private float horizontalMovement;
-    private float verticalMovement;
     private Rigidbody2D rB;
     public float jumpForce = 20f;
     public bool onGround = false;
+    public bool kickedBall;
 
     PhotonView view;
 
@@ -45,13 +44,20 @@ public class Movement : MonoBehaviour
 
     private void movement() 
     {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1) 
+        {
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+        }
+        else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+            horizontalMovement *= -1;
+        }
 
         if (onGround && Input.GetKeyDown(KeyCode.W))
         {
             rB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
         transform.Translate(new Vector2(horizontalMovement * movementSpeed * Time.deltaTime, 0));
     }
 }

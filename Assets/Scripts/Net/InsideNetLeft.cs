@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class InsideNet : MonoBehaviour
+public class InsideNetLeft : MonoBehaviour
 {
     PhotonView netView;
 
@@ -24,6 +24,6 @@ public class InsideNet : MonoBehaviour
     [PunRPC]
     void playerScored()
     {
-        GameManager.rightScore++;
+        GameManager.leftScore++;
     }
 }

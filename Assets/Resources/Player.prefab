@@ -160,6 +160,7 @@ MonoBehaviour:
   movementSpeed: 5
   jumpForce: 7
   onGround: 0
+  kickedBall: 0
 --- !u!61 &2006994842841593344
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ MonoBehaviour:
   - UpdateServerScore
   - updateServerScore
   - playerScored
+  - PlayerScored
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

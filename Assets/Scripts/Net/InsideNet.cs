@@ -15,14 +15,14 @@ public class InsideNet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            netView.RPC("playerScored", RpcTarget.All);
+            netView.RPC("PlayerScored", RpcTarget.All);
             GameManager.Instance.StartCoroutine("SpawnNewBall");
             PhotonNetwork.Destroy(collision.gameObject);
         }
     }
 
     [PunRPC]
-    void playerScored()
+    void PlayerScored()
     {
         GameManager.rightScore++;
     }

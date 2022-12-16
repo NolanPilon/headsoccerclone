@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         //End Game
         if (matchTime <= 0) 
         {
-            PhotonNetwork.LoadLevel("Loading");
+            Application.Quit();
         }
 
         UpdateScoreText();
